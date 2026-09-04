@@ -10,10 +10,18 @@ export interface CustomizationGroup {
   }[];
 }
 
+export type MenuCategoryType =
+  | 'curry_fried'
+  | 'curry'
+  | 'sides'
+  | 'veggie'
+  | 'soup'
+  | string;
+
 export interface MenuItem {
   id: string;
   name: string;
-  category: 'main' | 'sides' | 'drinks' | 'soup';
+  category: MenuCategoryType;
   categoryName: string;
   price: number;
   description: string;

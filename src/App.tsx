@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { MenuItem, CartItem, Order, TableInfo, SelectedOption } from './types';
-import { INITIAL_MENU_ITEMS } from './data/menuData';
+import { INITIAL_MENU_ITEMS, STORE_INFO } from './data/menuData';
 import { sendOrderToGAS } from './utils/gasHelper';
 import { Header } from './components/Header';
 import { CategoryNav } from './components/CategoryNav';
@@ -14,7 +14,7 @@ import { GasGuideModal } from './components/GasGuideModal';
 import { CallWaiterModal } from './components/CallWaiterModal';
 import { OrderHistoryModal } from './components/OrderHistoryModal';
 import { FloatingCartBar } from './components/FloatingCartBar';
-import { Utensils, AlertCircle } from 'lucide-react';
+import { Utensils, AlertCircle, MapPin, Phone, Bike, Sparkles } from 'lucide-react';
 
 export default function App() {
   // 1. Table Identification State (URL param ?table= or manual)
@@ -340,6 +340,43 @@ export default function App() {
             ))}
           </div>
         )}
+
+        {/* Restaurant Brand Info Card (Matching printed menu bottom) */}
+        <section className="mt-10 rounded-2xl bg-gradient-to-br from-amber-100/70 to-orange-100/50 border border-amber-200/80 p-5 shadow-xs text-amber-950">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-amber-300/40 pb-4">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-amber-700 text-amber-100 flex items-center justify-center font-black font-serif text-xl shadow-xs">
+                木
+              </div>
+              <div>
+                <h3 className="font-bold text-base text-gray-900 flex items-center gap-2">
+                  <span>{STORE_INFO.name}</span>
+                  <span className="text-xs bg-amber-600 text-white px-2 py-0.5 rounded-full font-medium">熟手作成</span>
+                </h3>
+                <p className="text-xs text-amber-800/90 mt-0.5 flex items-center gap-1 font-medium">
+                  <Sparkles className="w-3.5 h-3.5 text-amber-600" />
+                  {STORE_INFO.slogan}
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-1.5 self-start md:self-auto bg-amber-200/60 px-3 py-1.5 rounded-xl text-xs font-semibold text-amber-900">
+              <Bike className="w-4 h-4 text-amber-700" />
+              <span>{STORE_INFO.deliveryNotice}</span>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4 text-xs text-gray-700">
+            <div className="flex items-center gap-2 bg-white/70 p-2.5 rounded-xl border border-amber-100">
+              <MapPin className="w-4 h-4 text-amber-600 shrink-0" />
+              <span>門市地址：<strong className="text-gray-900">{STORE_INFO.address}</strong></span>
+            </div>
+            <div className="flex items-center gap-2 bg-white/70 p-2.5 rounded-xl border border-amber-100">
+              <Phone className="w-4 h-4 text-amber-600 shrink-0" />
+              <span>訂購電話：<strong className="text-gray-900">{STORE_INFO.phone}</strong> (大量訂購歡迎預約)</span>
+            </div>
+          </div>
+        </section>
       </main>
 
       {/* Floating Bottom Cart Bar */}

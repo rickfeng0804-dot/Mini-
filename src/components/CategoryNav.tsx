@@ -1,6 +1,6 @@
 import React from 'react';
 import { CATEGORIES } from '../data/menuData';
-import { Utensils, Beef, Popcorn, CupSoda, Soup } from 'lucide-react';
+import { Utensils, Flame, ChefHat, Popcorn, Leaf, Soup } from 'lucide-react';
 
 interface CategoryNavProps {
   selectedCategory: string;
@@ -10,9 +10,10 @@ interface CategoryNavProps {
 
 const ICON_MAP: Record<string, React.ReactNode> = {
   Utensils: <Utensils className="w-4 h-4" />,
-  Beef: <Beef className="w-4 h-4" />,
+  Flame: <Flame className="w-4 h-4" />,
+  ChefHat: <ChefHat className="w-4 h-4" />,
   Popcorn: <Popcorn className="w-4 h-4" />,
-  CupSoda: <CupSoda className="w-4 h-4" />,
+  Leaf: <Leaf className="w-4 h-4" />,
   Soup: <Soup className="w-4 h-4" />,
 };
 

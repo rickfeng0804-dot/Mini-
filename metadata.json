@@ -1,6 +1,6 @@
 {
   "name": "餐廳掃碼點餐系統",
-  "description": "專為餐館與美食店家設計的手機掃碼點餐系統，支援 URL 桌號抓取、分類菜單、餐點客製化選項、購物車管理、Google Apps Script (GAS) 訂單發送與即時呼叫服務功能。",
+  "description": "木匠熟成咖哩專用手機掃碼點餐系統，涵蓋熟成咖哩（炸）、熟成咖哩、單點好朋友、蔬菜好朋友、熱熱的朋友等精選菜單，支援規格客製化、購物車、桌號管理與訂單同步。",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
