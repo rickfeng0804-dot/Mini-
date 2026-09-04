@@ -1,8 +1,9 @@
 import React from 'react';
 import { Order } from '../types';
-import { CheckCircle2, Clock, ChefHat, UtensilsCrossed, Bell, History } from 'lucide-react';
+import { CheckCircle2, Clock, ChefHat, UtensilsCrossed, Bell, History, X } from 'lucide-react';
 
 interface OrderSuccessModalProps {
+  isOpen: boolean;
   order: Order | null;
   onClose: () => void;
   onOpenOrderHistory: () => void;
@@ -10,18 +11,33 @@ interface OrderSuccessModalProps {
 }
 
 export const OrderSuccessModal: React.FC<OrderSuccessModalProps> = ({
+  isOpen,
   order,
   onClose,
   onOpenOrderHistory,
   onOpenCallWaiter,
 }) => {
-  if (!order) return null;
+  if (!isOpen || !order) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-xs animate-fadeIn">
-      <div className="bg-white w-full max-w-md rounded-3xl shadow-2xl overflow-hidden flex flex-col transform transition-all text-center">
+    <div
+      onClick={onClose}
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-xs animate-fadeIn"
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="bg-white w-full max-w-md rounded-3xl shadow-2xl overflow-hidden flex flex-col transform transition-all text-center relative"
+      >
         {/* Animated Success Banner */}
         <div className="bg-gradient-to-b from-emerald-600 to-emerald-700 text-white p-6 relative">
+          <button
+            onClick={onClose}
+            className="absolute top-4 right-4 w-8 h-8 rounded-full bg-black/20 hover:bg-black/30 text-white flex items-center justify-center transition-all cursor-pointer"
+            title="關閉視窗"
+          >
+            <X className="w-5 h-5" />
+          </button>
+
           <div className="w-16 h-16 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center mx-auto mb-3 shadow-inner ring-4 ring-white/30 animate-bounce">
             <CheckCircle2 className="w-10 h-10 text-white" />
           </div>
@@ -131,8 +147,9 @@ export const OrderSuccessModal: React.FC<OrderSuccessModalProps> = ({
         {/* Footer Close */}
         <div className="p-4 bg-gray-50 border-t border-gray-100">
           <button
+            id="continue-browsing-menu-btn"
             onClick={onClose}
-            className="w-full py-3 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-sm transition-all shadow-md"
+            className="w-full py-3 rounded-xl bg-amber-600 hover:bg-amber-700 active:scale-98 text-white font-bold text-sm transition-all shadow-md cursor-pointer"
           >
             繼續瀏覽菜單
           </button>

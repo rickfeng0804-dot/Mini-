@@ -426,10 +426,20 @@ export default function App() {
 
       {/* 4. Order Success Thank You Modal */}
       <OrderSuccessModal
+        isOpen={isSuccessModalOpen}
         order={lastSubmittedOrder}
-        onClose={() => setIsSuccessModalOpen(false)}
-        onOpenOrderHistory={() => setIsOrderHistoryModalOpen(true)}
-        onOpenCallWaiter={() => setIsCallWaiterModalOpen(true)}
+        onClose={() => {
+          setIsSuccessModalOpen(false);
+          setLastSubmittedOrder(null);
+        }}
+        onOpenOrderHistory={() => {
+          setIsSuccessModalOpen(false);
+          setIsOrderHistoryModalOpen(true);
+        }}
+        onOpenCallWaiter={() => {
+          setIsSuccessModalOpen(false);
+          setIsCallWaiterModalOpen(true);
+        }}
       />
 
       {/* 5. Table Switcher & QR Code Simulator Modal */}
